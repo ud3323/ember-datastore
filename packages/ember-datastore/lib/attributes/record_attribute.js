@@ -312,9 +312,6 @@ Ember.RecordAttribute = Ember.Object.extend(
   /** @private - Make this look like a property so that `get()` will call it. */
   isProperty: YES,
 
-  /** @private - Make this look cacheable */
-  isCacheable: YES,
-
   /** @private - needed for KVO `property()` support */
   dependentKeys: [],
 
@@ -336,7 +333,7 @@ Ember.RecordAttribute = Ember.Object.extend(
     var attr = this;
     var ret  = Ember.computed(function(key, value) {
       return attr.call(this, key, value);
-    });
+    }).cacheable();
     ret.attr = attr;
     return ret ;
   }
