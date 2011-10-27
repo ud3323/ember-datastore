@@ -432,6 +432,11 @@ Ember.Store = Ember.Object.extend( /** @scope Ember.Store.prototype */ {
     var editables = this.editables;
     if (editables) editables[storeKey] = 0 ;
 
+    var that = this;
+    this._propagateToChildren(storeKey, function(storeKey){
+      that.removeDataHash(storeKey, status);
+    });
+
     return this ;
   },
 
