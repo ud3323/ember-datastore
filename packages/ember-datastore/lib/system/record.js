@@ -858,7 +858,7 @@ Ember.Record = Ember.Object.extend(
     if (value instanceof Ember.Record) {
       childRecord = value;
     } else {
-      recordType = this._materializeNestedRecordType(value, key);
+      recordType = this._materializeNestedRecordType(value, path);
       childRecord = this.createNestedRecord(recordType, value);
     }
 
