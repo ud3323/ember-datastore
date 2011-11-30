@@ -917,6 +917,46 @@ Ember.Record = Ember.Object.extend(
   },
 
   /**
+   * Materialize all nested records with the store
+   */
+  materializeNestedRecords: function() {
+    var storeKey = get(this, 'storeKey'),
+        store = get(this, 'store'),
+        recordType = SC.Store.recordTypeFor(storeKey),
+        idx, len, key, val, nestedAttrs, iter;
+
+    if (get(store, 'isNested')) return;
+
+    nestedAttrs = recordType.nestedAttributes;
+
+    // if recordType nestedAttributes are not set up yet, make sure to
+    // create the cache first
+    if (!nestedAttrs) {
+      var attr,
+          attrFor = SC.RecordAttribute.attrFor,
+          dataHash = store.readDataHash(storeKey);
+      if (!dataHash) return;
+
+      nestedAttrs = [];
+      for(var k in dataHash) {
+        attr = attrFor(this, k);
+        if (attr instanceof SC.ChildrenAttribute) nestedAttrs.push(k);
+      }
+      recordType.nestedAttributes = nestedAttrs;
+    }
+
+    for(idx=0,len=nestedAttrs.length;idx<len;++idx) {
+      key = nestedAttrs[idx];
+      val = get(this, key);
+      recs = val instanceof SC.ChildArray ? val : [val];
+      // We don't need to do anything to each object, iterating
+      // over the children is enough (since objectAt calls
+      // registerNestedRecord)
+      recs.forEach(function(rec) {}, this);
+    }
+  },
+
+  /**
     Creates a new nested record instance.
 
     @param {Ember.Record} recordType The type of the nested record to create.
