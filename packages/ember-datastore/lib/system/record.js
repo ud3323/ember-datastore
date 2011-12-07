@@ -925,8 +925,6 @@ Ember.Record = Ember.Object.extend(
         recordType = SC.Store.recordTypeFor(storeKey),
         idx, len, key, val, nestedAttrs, iter;
 
-    if (get(store, 'isNested')) return;
-
     nestedAttrs = recordType.nestedAttributes;
 
     // if recordType nestedAttributes are not set up yet, make sure to
