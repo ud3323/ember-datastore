@@ -868,6 +868,8 @@ Ember.Record = Ember.Object.extend(
       psk = get(this, 'storeKey');
       csk = get(childRecord, 'storeKey');
       store.registerChildToParent(psk, csk, path);
+      // Invalidate the 'parentRecord' cached property
+      SC.meta(childRecord).descs['parentRecord'].didChange(childRecord, 'parentRecord');
     }
 
     return childRecord;
