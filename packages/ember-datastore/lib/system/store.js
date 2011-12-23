@@ -521,7 +521,7 @@ Ember.Store = Ember.Object.extend( /** @scope Ember.Store.prototype */ {
       this.revisions[storeKey] = rev;
       this._notifyRecordPropertyChange(storeKey, statusOnly, key);
 
-      this._propagateToChildren(storeKey, iter);
+      //this._propagateToChildren(storeKey, iter);
     }
 
     return this ;
