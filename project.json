@@ -2,8 +2,8 @@
   "name": "ember-datastore-project",
   "bpm": "1.0.0",
   "dependencies": {
-    "ember-datastore": "=> 2.0",
-    "ember-indexset":  "=> 2.0"
+    "ember-datastore": ">= 0",
+    "ember-indexset":  ">= 0"
   },
   
   "bpm:build": {
