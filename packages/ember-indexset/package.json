@@ -1,0 +1,35 @@
+{
+  "name": "ember-indexset",
+  "summary": "Ember IndexSet",
+  "description": "Provides an observable, enumerable IndexSet",
+  "homepage": "http://sproutcore.com",
+  "author": "Strobe Inc., Apple, Inc., and contributors",
+  "version": "2.0.beta.3",
+  "dependencies": {
+    "spade":              "~> 1.0.0",
+    "ember-runtime": "2.0.beta.3"
+  },
+
+  "directories": {
+    "lib": "lib"
+  },
+
+  "dependencies:development": {
+    "spade-qunit": "~> 1.0.0"
+  },
+  
+  "bpm:build": {
+    
+    "bpm_libs.js": {
+      "directories": ["lib"],
+      "modes":        "*"
+    },
+    
+    "ember-indexset/bpm_tests.js": {
+      "directories": ["tests"],
+      "modes": ["debug"]
+    }
+  }
+
+}
+
